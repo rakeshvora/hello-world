@@ -1,0 +1,73 @@
+
+
+- Another tab in my account section
+
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-downloadable-products-link-custom">
+                <arguments>
+                    <argument name="path" xsi:type="string">downloadable/customer/products</argument>
+                    <argument name="label" xsi:type="string">My Custom Link</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+   </body>
+</page>
+
+
+- How do you add another field to customer address entity using a setup script?
+
+<?php
+
+namespace Magenest\Address\Setup;
+
+use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\UpgradeDataInterface;
+
+class UpgradeData implements UpgradeDataInterface
+{
+   private $customerSetupFactory;
+
+   public function __construct(\Magento\Customer\Setup\CustomerSetupFactory $customerSetupFactory)
+   {
+       $this->customerSetupFactory = $customerSetupFactory;
+   }
+
+   public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+   {
+       $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+       if (version_compare($context->getVersion(), '1.0.1') < 0) {
+           $customerSetup->addAttribute('customer_address', 'new_field', [
+               'label' => 'New Field',
+               'input' => 'text',
+               'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+               'source' => '',
+               'required' => false,
+               'position' => 90,
+               'visible' => true,
+               'system' => false,
+               'is_used_in_grid' => false,
+               'is_visible_in_grid' => false,
+               'is_filterable_in_grid' => false,
+               'is_searchable_in_grid' => false,
+               'frontend_input' => 'hidden',
+               'backend' => ''
+           ]);
+
+              $attribute=$customerSetup->getEavConfig()
+                ->getAttribute('customer_address','new_field')                                  
+                ->addData(['used_in_forms' => [
+                   'adminhtml_customer_address',
+                   'adminhtml_customer',
+                   'customer_address_edit',
+                   'customer_register_address',
+                   'customer_address',
+                  ]
+                ]);
+           $attribute->save();
+       }
+   }
+}
