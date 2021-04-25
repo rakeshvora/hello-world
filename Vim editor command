@@ -1,0 +1,13 @@
+esc - allow to type command
+n   - find next occurance of text
+N   - find previouse occurance of text
+:5  - got line 5
+:ws - save and exit
+:x  - save and exit
+:q  - exit without save
+dd  - delete currenct lin
+j   - navigate to file forward
+k   - navigat to file backward
+u   - undo the last change
+gg  - takes to top
+G   - takes to bottom
