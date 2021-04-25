@@ -1,17 +1,24 @@
--  Create Admin Menu in Magento 2
+- There are three authentication methods available when using the 
+  Web API:        
+  token-based, OAuth-based, and session-based. 
 
-https://www.mageplaza.com/magento-2-module-development/create-admin-menu-magento-2.html
+- Frontend controller extends below file:
+  
+  class Index extends \Magento\Framework\App\Action\Action
 
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Mageplaza_HelloWorld::helloworld" title="Hello World" module="Mageplaza_HelloWorld" sortOrder="51" resource="Mageplaza_HelloWorld::helloworld"/>
-        <add id="Mageplaza_HelloWorld::post" title="Manage Posts" module="Mageplaza_HelloWorld" sortOrder="10" action="mageplaza_helloworld/post" resource="Mageplaza_HelloWorld::post" parent="Mageplaza_HelloWorld::helloworld"/>
-        <add id="Mageplaza_HelloWorld::hello_configuration" title="Configuration" module="Mageplaza_HelloWorld" sortOrder="99" parent="Mageplaza_HelloWorld::helloworld" action="adminhtml/system_config/edit/section/helloworld" resource="Mageplaza_HelloWorld::helloworld_configuration"/>
-    </menu>
-</config>
+- Context:
 
+  \Magento\Framework\App\Action\Context $context,
 
+  return parent::__construct($context);
+
+- Set default value in configuration : etc/config.xml
+
+- Path of system.xml : etc/adminhtml
+
+- Admin controller extends below file:
+  
+  class Index extends \Magento\Backend\App\Action
 
 - Another tab in my account section
 
