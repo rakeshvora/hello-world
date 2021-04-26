@@ -1,0 +1,69 @@
+after.body.start
+
+Header
+	header.container = page-header
+		header.panel.wrapper = panel wrapper
+			header.panel = panel header
+				<block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="Magento_Store::switch/languages.phtml">
+				<block class="Magento\Customer\Block\Account\Navigation" name="top.links">
+		header-wrapper = header content
+			logo = <block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+			minicart
+			block-search
+			compare wrapper
+Left
+
+Main
+	page.top = no class or html tag
+		<block class="Magento\Framework\View\Element\Template" name="navigation.sections" before="-" template="Magento_Theme::html/sections.phtml">
+	main.content = page-main
+		columns.top = 
+			<block class="Magento\Theme\Block\Html\Title" name="page.main.title" template="Magento_Theme::html/title.phtml"/>
+			page.messages
+		columns = columns
+			main = column main
+	page.bottom.container = page-bottom
+
+Footer
+	footer-container = page-footer
+		footer = footer content
+            <block class="Magento\Store\Block\Switcher" name="store_switcher" as="store_switcher" template="Magento_Store::switch/stores.phtml"/>
+            <block class="Magento\Framework\View\Element\Html\Links" name="footer_links">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">footer links</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
+
+before.body.end
+
+
+Layout Handles:
+
+Home Page:
+
+default
+cms_index_index
+cms_page_view
+cms_index_index
+cms_index_index_id_home
+1column
+catalog_product_prices
+
+Product Page:
+
+default
+catalog_product_view
+catalog_product_view_type_simple
+catalog_product_view_id_16
+catalog_product_view_sku_24-UG07
+1column
+catalog_product_prices
+
+
+https://bsscommerce.com/confluence/magento-2-layout-overview-need-to-know-before-creating-layouts/
+https://magento.nublue.co.uk/women.html
+https://magento.nublue.co.uk/hera-pullover-hoodie.html
+https://gist.github.com/joshfortyfour/11d0f7dbc7be9e85bf4e9c62c668f465
+https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/layouts/layout-types.html
+https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/layouts/layout-overview.html#layout-files-types-and-conventions
