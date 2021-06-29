@@ -1,3 +1,10 @@
+- This event will execute everywhere static and dynamic:
+  
+  controller_action_predispatch_'.$request->getFullActionName(), $eventParameters
+  for example:
+  If we remove wishlist item then below event will be create dynamically:
+    controller_action_predispatch_wishlist_index_remove
+
 - There are three authentication methods available when using the 
   Web API:        
   token-based, OAuth-based, and session-based. 
